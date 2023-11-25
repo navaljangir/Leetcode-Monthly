@@ -1,3 +1,31 @@
+//T.C - O(n)
+//S.C - O(1)
+class Solution {
+public:
+    vector<int> getSumAbsoluteDifferences(vector<int>& nums) {
+        long long prevSum = 0;
+        long long afterSum =0 ;
+        for(auto i : nums){
+            afterSum+=i;
+        }
+        vector<int> ans(nums.size());
+        for(int i =0 ;i<nums.size();i++){
+            if(i+1<nums.size()){
+                int num1 = abs(i*nums[i]-prevSum);
+                int size = nums.size()-i-1;
+                afterSum = afterSum-nums[i];
+                int num2 = abs(nums[i]*size-afterSum);
+                prevSum+=nums[i];
+                ans[i]=num1+num2;
+            }else{
+                int num1 = abs(i*nums[i]-prevSum);
+                ans[i]=num1;
+                prevSum+=nums[i];
+            }
+        }
+        return ans;
+    }
+};
 //s.c O(n)
 //T.C : O(n)
 class Solution {
@@ -33,3 +61,4 @@ public:
         return ans;
     }
 };
+
